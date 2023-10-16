@@ -110,9 +110,11 @@ ul li:hover {
     cursor: pointer;
 }
 
+
 .purchased {
     background-color: #B2D8B2; /* Change color to indicate purchased items */
     color: #004400; /* Change text color */
     text-decoration: line-through; /* Add strikethrough for a visual cue */
 }
+
 
