@@ -74,6 +74,7 @@ function clearShoppingListInDB() {
 // ... (existing code) ...
 
 const markAsPurchasedButtonEl = document.getElementById("mark-as-purchased");
+const purchasedListEl = document.getElementById("purchased-list");
 
 markAsPurchasedButtonEl.addEventListener("click", function () {
     markSelectedItemsAsPurchased();
@@ -83,13 +84,20 @@ function markSelectedItemsAsPurchased() {
     // Get all items in the shopping list
     const listItems = shoppingListEl.getElementsByTagName("li");
 
-    // Iterate through the list and mark items as purchased
+    // Iterate through the list and move marked items to the purchased list
     for (let i = 0; i < listItems.length; i++) {
         const listItem = listItems[i];
 
         // Check if the item is not already marked as purchased
         if (!listItem.classList.contains("purchased")) {
             listItem.classList.add("purchased");
+            
+            // Clone the item and append it to the purchased list
+            const clonedItem = listItem.cloneNode(true);
+            purchasedListEl.appendChild(clonedItem);
+
+            // Remove the item from the original shopping list
+            listItem.remove();
         }
     }
 }
