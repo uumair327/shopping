@@ -57,3 +57,18 @@ function appendItemToShoppingListEl(item) {
     
     shoppingListEl.append(newEl)
 }
+// ... (existing code) ...
+
+const clearButtonEl = document.getElementById("clear-button");
+
+clearButtonEl.addEventListener("click", function () {
+    clearShoppingListInDB();
+});
+
+function clearShoppingListInDB() {
+    // Remove all items from the shopping list in the database
+    shoppingListEl.innerHTML = "No items in list... yet";
+    remove(ref(database, "shoppingList"));
+}
+
+// ... (existing code) ...
