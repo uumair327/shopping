@@ -72,35 +72,33 @@ function clearShoppingListInDB() {
 }
 
 // ... (existing code) ...
-
 const markAsPurchasedButtonEl = document.getElementById("mark-as-purchased");
 const purchasedListEl = document.getElementById("purchased-list");
+const shoppingListEl = document.getElementById("shopping-list");
 
 markAsPurchasedButtonEl.addEventListener("click", function () {
-    markSelectedItemsAsPurchased();
+    markAllItemsAsPurchased();
 });
 
-function markSelectedItemsAsPurchased() {
-    // Get all items in the shopping list
+function markAllItemsAsPurchased() {
     const listItems = shoppingListEl.getElementsByTagName("li");
 
-    // Iterate through the list and move marked items to the purchased list
-    for (let i = 0; i < listItems.length; i++) {
-        const listItem = listItems[i];
+    // Move all items to the purchased list
+    while (listItems.length > 0) {
+        const listItem = listItems[0];
 
-        // Check if the item is not already marked as purchased
-        if (!listItem.classList.contains("purchased")) {
-            listItem.classList.add("purchased");
-            
-            // Clone the item and append it to the purchased list
-            const clonedItem = listItem.cloneNode(true);
-            purchasedListEl.appendChild(clonedItem);
+        // Add the "purchased" class
+        listItem.classList.add("purchased");
 
-            // Remove the item from the original shopping list
-            listItem.remove();
-        }
+        // Clone and append to the purchased list
+        const clonedItem = listItem.cloneNode(true);
+        purchasedListEl.appendChild(clonedItem);
+
+        // Remove the item from the original shopping list
+        listItem.remove();
     }
 }
+
 
 // ... (existing code) ...
 
