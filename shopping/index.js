@@ -72,3 +72,27 @@ function clearShoppingListInDB() {
 }
 
 // ... (existing code) ...
+
+const markAsPurchasedButtonEl = document.getElementById("mark-as-purchased");
+
+markAsPurchasedButtonEl.addEventListener("click", function () {
+    markSelectedItemsAsPurchased();
+});
+
+function markSelectedItemsAsPurchased() {
+    // Get all items in the shopping list
+    const listItems = shoppingListEl.getElementsByTagName("li");
+
+    // Iterate through the list and mark items as purchased
+    for (let i = 0; i < listItems.length; i++) {
+        const listItem = listItems[i];
+
+        // Check if the item is not already marked as purchased
+        if (!listItem.classList.contains("purchased")) {
+            listItem.classList.add("purchased");
+        }
+    }
+}
+
+// ... (existing code) ...
+
